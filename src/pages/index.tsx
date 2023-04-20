@@ -4,7 +4,6 @@ import { client } from '@/libs/client';
 import Image from 'next/image';
 
 export default function Home({ blog }: any) {
-  console.log(blog);
   return (
     <Layout>
       <nav>
@@ -14,7 +13,7 @@ export default function Home({ blog }: any) {
               <article>
                 <Link
                   className="flex flex-col h-full p-4"
-                  href={`/blog/${blog.id}`}
+                  href={`/blog/post/${blog.id}`}
                 >
                   <div className="relative aspect-square">
                     <Image src={blog.eyecatch.url} alt={blog.title} fill />
@@ -33,7 +32,13 @@ export default function Home({ blog }: any) {
 
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async () => {
-  const data = await client.get({ endpoint: 'blog' });
+  const data = await client.get({
+    endpoint: 'blog',
+    queries: {
+      offset: 0,
+      limit: 4,
+    },
+  });
 
   return {
     props: {

@@ -1,27 +1,53 @@
-import { Layout } from '@/components/Base';
+// pages/index.js
+import Link from 'next/link';
 import { client } from '@/libs/client';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
+import { Layout } from '@/components/Base';
+import Image from 'next/image';
 
-type Props = {};
+type Props = {
+  blog: [{ id: string; title: string }];
+};
 
-const Post = ({ blog }: any) => {
-  console.log(blog);
+const PER_PAGE = 4;
+
+const Home: React.FC<Props> = ({ blog }) => {
   return (
     <Layout>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${blog.content}`,
-        }}
-      />
+      <nav>
+        <ul className="grid grid-cols-2 gap-4">
+          {blog.map((blog: any) => (
+            <li className="text-center bg-orange-400" key={blog.id}>
+              <article>
+                <Link
+                  className="flex flex-col h-full p-4"
+                  href={`/blog/post/${blog.id}`}
+                >
+                  <div className="relative aspect-square">
+                    <Image src={blog.eyecatch.url} alt={blog.title} fill />
+                  </div>
+                  <span>{blog.title}</span>
+                  <span>公開日:{blog.publishedAt.slice(0, 10)}</span>
+                </Link>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      ;
     </Layout>
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await client.get({ endpoint: 'blog' });
+export default Home;
 
-  const paths = data.contents.map(
-    (content: { id: any }) => `/blog/${content.id}`
+export const getStaticPaths = async () => {
+  const data = await client.get({ endpoint: 'blog' });
+  const range = (start: number, end: number) =>
+    [...Array(end - start + 1)].map((_, i) => start + i);
+
+  const paths = range(1, Math.ceil(data.totalCount / PER_PAGE)).map(
+    (page) => `/blog/${page}`
   );
 
   return {
@@ -29,17 +55,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false,
   };
 };
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const id = ctx.params?.id as string;
+
+// データをテンプレートに受け渡す部分の処理を記述します
+export const getStaticProps: GetStaticProps = async (context) => {
+  const id = Number(context.params?.id);
   const data = await client.get({
     endpoint: 'blog',
-    contentId: id,
+    queries: {
+      offset: (id - 1) * 4,
+      limit: 4,
+    },
   });
+
   return {
     props: {
-      blog: data,
+      blog: data.contents,
     },
   };
 };
-
-export default Post;

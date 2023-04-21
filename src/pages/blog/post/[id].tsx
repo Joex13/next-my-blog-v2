@@ -1,4 +1,3 @@
-import { Layout } from '@/components/Base';
 import { client } from '@/libs/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
@@ -6,13 +5,11 @@ type Props = {};
 
 const Post = ({ blog }: any) => {
   return (
-    <Layout>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${blog.content}`,
-        }}
-      />
-    </Layout>
+    <div
+      dangerouslySetInnerHTML={{
+        __html: `${blog.content}`,
+      }}
+    />
   );
 };
 
@@ -21,12 +18,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     endpoint: 'blog',
     queries: {
       offset: 0,
-      limit: 1000,
+      limit: 100,
     },
   });
 
   const paths = data.contents.map(
-    (content: { id: any }) => `/blog/post/${content.id}`
+    (content: { id: string }) => `/blog/post/${content.id}`
   );
 
   return {
@@ -34,12 +31,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false,
   };
 };
+
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const id = ctx.params?.id as string;
+  console.log(id);
+
   const data = await client.get({
     endpoint: 'blog',
     contentId: id,
   });
+
   return {
     props: {
       blog: data,

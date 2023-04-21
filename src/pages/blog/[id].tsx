@@ -1,7 +1,7 @@
 // pages/index.js
 import { client } from '@/libs/client';
 import { GetStaticProps } from 'next';
-import BlogList from '@/components/Feature/BlogList';
+import { BlogList } from '@/components/Feature';
 
 type Props = {
   blog: [];

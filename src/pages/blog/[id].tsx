@@ -2,9 +2,10 @@
 import { client } from '@/libs/client';
 import { GetStaticProps } from 'next';
 import { Blog } from '@/components/Page';
+import { BlogType } from '@/types/blog';
 
 type Props = {
-  blog: [];
+  blog: BlogType[];
   totalCount: number;
   currentPage: number;
 };
@@ -51,11 +52,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   });
 
+  const currentPage = data.offset / data.limit + 1;
+
   return {
     props: {
       blog: data.contents,
       totalCount: data.totalCount,
-      currentPage: data.offset / data.limit + 1,
+      currentPage,
     },
   };
 };

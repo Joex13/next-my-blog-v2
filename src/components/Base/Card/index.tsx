@@ -6,7 +6,7 @@ type Props = {};
 
 const Card = ({ blog }: any) => {
   return (
-    <li className="text-center bg-orange-400" key={blog.id}>
+    <li className="text-center bg-orange-400">
       <article>
         <Link
           className="flex flex-col h-full p-4"

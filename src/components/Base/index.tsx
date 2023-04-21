@@ -1,5 +1,6 @@
 import List from './List';
 import Card from './Card';
 import Heading from './Heading';
+import Anchor from './Anchor';
 
-export { Card, List, Heading };
+export { Anchor, Card, List, Heading };

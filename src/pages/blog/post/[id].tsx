@@ -1,15 +1,21 @@
 import { client } from '@/libs/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { BlogInfo } from '@/components/Feature';
 
 type Props = {};
 
 const Post = ({ blog }: any) => {
+  console.log(blog);
   return (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: `${blog.content}`,
-      }}
-    />
+    <>
+      <BlogInfo blog={blog} />
+      <div
+        dangerouslySetInnerHTML={{
+          __html: `${blog.content}`,
+        }}
+        className="mt-4"
+      />
+    </>
   );
 };
 
@@ -34,7 +40,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const id = ctx.params?.id as string;
-  console.log(id);
 
   const data = await client.get({
     endpoint: 'blog',

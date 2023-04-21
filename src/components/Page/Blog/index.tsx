@@ -1,4 +1,5 @@
 import { BlogList, BlogPagination } from '@/components/Feature';
+import type { Blog } from '@/types/blog';
 
 type Props = {
   blog: [];

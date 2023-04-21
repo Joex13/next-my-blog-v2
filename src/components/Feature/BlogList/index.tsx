@@ -1,6 +1,7 @@
 import React from 'react';
 import { List } from '@/components/Base';
 import { BlogCard } from '@/components/Feature';
+import type { Blog } from '@/types/blog';
 
 type Props = {
   blog: [];

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Heading } from '@/components/Base';
+import type { Blog } from '@/types/blog';
 
 type Props = {
-  blog: { title: string; publishedAt: string };
+  blog: Blog;
 };
 
 const BlogInfo = ({ blog }: Props) => {

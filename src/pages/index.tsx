@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { client } from '@/libs/client';
+import { HomeHeading } from '@/components/Feature';
 
 export default function Home({ blog }: any) {
   return (
     <>
-      <h1>this is home</h1>
+      <HomeHeading>THIS IS HOME</HomeHeading>
       <Link href="/blog/1">記事一覧へ</Link>
     </>
   );

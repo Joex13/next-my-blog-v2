@@ -24,7 +24,7 @@ const BlogPagination = ({ totalCount, PER_PAGE, currentPage }: Props) => {
 
   return (
     <Pagination>
-      {currentPage >= (PER_PAGE + 2) ? (
+      {currentPage >= PER_PAGE + 2 ? (
         <>
           <li className="duration-300 bg-orange-600 hover:opacity-70">
             <Link className={'inline-block p-3 '} href={`/blog/1`}>

@@ -9,7 +9,7 @@ type Props = {
   currentPage: number;
 };
 
-const PER_PAGE = 4;
+const PER_PAGE = 2;
 
 const BlogPage: React.FC<Props> = ({ blog, totalCount, currentPage }) => {
   return (
@@ -46,8 +46,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const data = await client.get({
     endpoint: 'blog',
     queries: {
-      offset: (id - 1) * 4,
-      limit: 4,
+      offset: (id - 1) * PER_PAGE,
+      limit: PER_PAGE,
     },
   });
 

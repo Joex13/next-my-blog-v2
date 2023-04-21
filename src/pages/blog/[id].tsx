@@ -6,15 +6,17 @@ import { BlogList, BlogPagination } from '@/components/Feature';
 type Props = {
   blog: [];
   totalCount: number;
+  currentPage: number;
 };
 
 const PER_PAGE = 4;
 
-const Home: React.FC<Props> = ({ blog, totalCount }) => {
+const Home: React.FC<Props> = ({ blog, totalCount, currentPage }) => {
+  console.log(currentPage);
   return (
     <>
       <BlogList blog={blog} />
-      <BlogPagination totalCount={totalCount} PER_PAGE={PER_PAGE} />
+      <BlogPagination totalCount={totalCount} PER_PAGE={PER_PAGE} currentPage={currentPage} />
     </>
   );
 };
@@ -51,6 +53,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       blog: data.contents,
       totalCount: data.totalCount,
+      currentPage: data.offset / data.limit + 1,
     },
   };
 };

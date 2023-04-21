@@ -2,7 +2,7 @@
 import { client } from '@/libs/client';
 import { GetStaticProps } from 'next';
 import { Blog } from '@/components/Page';
-import { BlogType } from '@/types/blog';
+import { BlogType } from '@/types/';
 
 type Props = {
   blog: BlogType[];

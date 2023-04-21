@@ -1,9 +1,9 @@
 import React from 'react';
 import { Heading, ImageFill } from '@/components/Base';
-import type { Blog } from '@/types/blog';
+import type { BlogType } from '@/types/';
 
 type Props = {
-  blog: Blog;
+  blog: BlogType;
 };
 
 const BlogInfo = ({ blog }: Props) => {

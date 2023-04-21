@@ -1,7 +1,7 @@
 import { client } from '@/libs/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { BlogPost } from '@/components/Page';
-import type { BlogType } from '@/types/blog';
+import type { BlogType } from '@/types/';
 
 type Props = {
   blog: BlogType;

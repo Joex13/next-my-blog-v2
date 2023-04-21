@@ -1,22 +1,14 @@
 import React from 'react';
-import Link from 'next/link';
-import ImageFill from '../ImageFill';
 
-type Props = {};
+type Props = {
+  className?: string;
+  children: React.ReactNode;
+};
 
-const Card = ({ blog }: any) => {
+const Card = ({ children, className }: Props) => {
   return (
-    <li className="text-center bg-orange-400">
-      <article>
-        <Link
-          className="flex flex-col h-full p-4"
-          href={`/blog/post/${blog.id}`}
-        >
-          <ImageFill src={blog.eyecatch.url} alt={blog.title} />
-          <span>{blog.title}</span>
-          <span>公開日:{blog.publishedAt.slice(0, 10)}</span>
-        </Link>
-      </article>
+    <li className={'text-center ' + className}>
+      {children}
     </li>
   );
 };

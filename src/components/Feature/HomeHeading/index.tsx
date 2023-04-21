@@ -6,7 +6,7 @@ type Props = {
 };
 
 const HomeHeading = ({ children }: Props) => {
-  return <Heading level={1}>{children}</Heading>;
+  return <Heading className='font-bold text-2xl' level={1}>{children}</Heading>;
 };
 
 export default HomeHeading;

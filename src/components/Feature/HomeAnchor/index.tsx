@@ -4,13 +4,12 @@ import React from 'react';
 
 type Props = {
   href: string;
-  className?: string;
   children: string;
 };
 
-const HomeAnchor = ({ href, className, children }: Props) => {
+const HomeAnchor = ({ href, children }: Props) => {
   return (
-    <Anchor href={href} className={className}>
+    <Anchor href={href} className="block bg-orange-400 w-40 mt-4 mx-auto">
       {children}
     </Anchor>
   );

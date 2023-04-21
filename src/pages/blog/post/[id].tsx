@@ -1,10 +1,13 @@
 import { client } from '@/libs/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { BlogPost } from '@/components/Page';
+import type { BlogType } from '@/types/blog';
 
-type Props = {};
+type Props = {
+  blog: BlogType;
+};
 
-const BlogPostPage = ({ blog }: any) => {
+const BlogPostPage = ({ blog }: Props) => {
   return (
     <>
       <BlogPost blog={blog} />

@@ -1,8 +1,8 @@
 import { BlogList, BlogPagination } from '@/components/Feature';
-import type { Blog } from '@/types/blog';
+import type { BlogType } from '@/types/blog';
 
 type Props = {
-  blog: [];
+  blog: BlogType[];
   totalCount: number;
   currentPage: number;
   PER_PAGE: number;

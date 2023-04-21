@@ -1,10 +1,10 @@
 import React from 'react';
 import { List } from '@/components/Base';
 import { BlogCard } from '@/components/Feature';
-import type { Blog } from '@/types/blog';
+import type { BlogType } from '@/types/blog';
 
 type Props = {
-  blog: [];
+  blog: BlogType[];
 };
 
 const BlogList = ({ blog }: Props) => {

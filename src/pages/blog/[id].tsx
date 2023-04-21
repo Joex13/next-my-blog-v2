@@ -1,18 +1,20 @@
 // pages/index.js
 import { client } from '@/libs/client';
 import { GetStaticProps } from 'next';
-import { BlogList } from '@/components/Feature';
+import { BlogList, BlogPagination } from '@/components/Feature';
 
 type Props = {
   blog: [];
+  totalCount: number;
 };
 
 const PER_PAGE = 4;
 
-const Home: React.FC<Props> = ({ blog }) => {
+const Home: React.FC<Props> = ({ blog, totalCount }) => {
   return (
     <>
       <BlogList blog={blog} />
+      <BlogPagination totalCount={totalCount} PER_PAGE={PER_PAGE} />
     </>
   );
 };
@@ -48,6 +50,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       blog: data.contents,
+      totalCount: data.totalCount,
     },
   };
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from '@/components/Base';
+import { Heading, ImageFill } from '@/components/Base';
 import type { Blog } from '@/types/blog';
 
 type Props = {
@@ -9,7 +9,8 @@ type Props = {
 const BlogInfo = ({ blog }: Props) => {
   return (
     <>
-      <div className="text-center [&>*]:mt-4">
+      <div className="text-center [&>*]:mt-2">
+        <ImageFill src={blog.eyecatch.url} alt={blog.title} />
         <Heading level={1} className="font-bold text-2xl">
           {blog.title}
         </Heading>

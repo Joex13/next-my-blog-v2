@@ -1,10 +1,7 @@
 // pages/index.js
-import Link from 'next/link';
 import { client } from '@/libs/client';
 import { GetStaticProps } from 'next';
-import { Layout } from '@/components/Base';
 import BlogList from '@/components/Domain/BlogList';
-import Image from 'next/image';
 
 type Props = {
   blog: [];
@@ -14,9 +11,9 @@ const PER_PAGE = 4;
 
 const Home: React.FC<Props> = ({ blog }) => {
   return (
-    <Layout>
+    <>
       <BlogList blog={blog} />
-    </Layout>
+    </>
   );
 };
 

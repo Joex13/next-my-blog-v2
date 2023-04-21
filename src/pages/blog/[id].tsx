@@ -1,7 +1,7 @@
 // pages/index.js
 import { client } from '@/libs/client';
 import { GetStaticProps } from 'next';
-import { BlogList, BlogPagination } from '@/components/Feature';
+import { Blog } from '@/components/Page';
 
 type Props = {
   blog: [];
@@ -11,17 +11,20 @@ type Props = {
 
 const PER_PAGE = 4;
 
-const Home: React.FC<Props> = ({ blog, totalCount, currentPage }) => {
-  console.log(currentPage);
+const BlogPage: React.FC<Props> = ({ blog, totalCount, currentPage }) => {
   return (
     <>
-      <BlogList blog={blog} />
-      <BlogPagination totalCount={totalCount} PER_PAGE={PER_PAGE} currentPage={currentPage} />
+      <Blog
+        blog={blog}
+        totalCount={totalCount}
+        PER_PAGE={PER_PAGE}
+        currentPage={currentPage}
+      />
     </>
   );
 };
 
-export default Home;
+export default BlogPage;
 
 export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: 'blog' });
@@ -38,7 +41,6 @@ export const getStaticPaths = async () => {
   };
 };
 
-// データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = Number(context.params?.id);
   const data = await client.get({

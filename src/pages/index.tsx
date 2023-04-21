@@ -1,27 +1,9 @@
-import { client } from '@/libs/client';
-import { HomeAnchor, HomeHeading } from '@/components/Feature';
+import Home from '@/components/Page/Home';
 
-export default function Home({ blog }: any) {
+export default function HomePage() {
   return (
-    <div className="text-center">
-      <HomeHeading>THIS IS HOME</HomeHeading>
-      <HomeAnchor href="/blog/1">記事一覧へ</HomeAnchor>
-    </div>
+    <>
+      <Home />
+    </>
   );
 }
-
-export const getStaticProps = async () => {
-  const data = await client.get({
-    endpoint: 'blog',
-    queries: {
-      offset: 0,
-      limit: 4,
-    },
-  });
-
-  return {
-    props: {
-      blog: data.contents,
-    },
-  };
-};

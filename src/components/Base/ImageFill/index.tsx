@@ -2,14 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 
 type Props = {
-  url: string;
+  src: string;
   alt: string;
 };
 
-const ImageFill = ({ url, alt }: Props) => {
+const ImageFill = ({ src, alt }: Props) => {
   return (
     <div className="relative aspect-square">
-      <Image src={url} alt={alt} fill />
+      <Image src={src} alt={alt} fill />
     </div>
   );
 };

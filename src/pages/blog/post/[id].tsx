@@ -1,20 +1,13 @@
 import { client } from '@/libs/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { BlogInfo } from '@/components/Feature';
+import { BlogPost } from '@/components/Page';
 
 type Props = {};
 
-const Post = ({ blog }: any) => {
-  console.log(blog);
+const BlogPostPage = ({ blog }: any) => {
   return (
     <>
-      <BlogInfo blog={blog} />
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${blog.content}`,
-        }}
-        className="mt-4"
-      />
+      <BlogPost blog={blog} />
     </>
   );
 };
@@ -53,4 +46,4 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   };
 };
 
-export default Post;
+export default BlogPostPage;

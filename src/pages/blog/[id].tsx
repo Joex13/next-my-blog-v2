@@ -29,11 +29,9 @@ export default BlogPage;
 
 export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: 'blog' });
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i);
-
-  const paths = range(1, Math.ceil(data.totalCount / PER_PAGE)).map(
-    (page) => `/blog/${page}`
+  const paths = Array.from(
+    { length: Math.ceil(data.totalCount / PER_PAGE) },
+    (_, i) => `/blog/${i + 1}`
   );
 
   return {

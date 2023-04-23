@@ -5,17 +5,22 @@ type Props = {
   blog: BlogType[];
   totalCount: number;
   currentPage: number;
-  PER_PAGE: number;
+  totalPage: number;
 };
 
-const Blog: React.FC<Props> = ({ blog, totalCount, currentPage, PER_PAGE }) => {
+const Blog: React.FC<Props> = ({
+  blog,
+  totalCount,
+  currentPage,
+  totalPage,
+}) => {
   return (
     <>
       <BlogList blog={blog} />
       <BlogPagination
         totalCount={totalCount}
-        PER_PAGE={PER_PAGE}
         currentPage={currentPage}
+        totalPage={totalPage}
       />
     </>
   );

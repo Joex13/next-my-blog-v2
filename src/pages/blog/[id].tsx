@@ -7,19 +7,25 @@ import { BlogType } from '@/types/';
 type Props = {
   blog: BlogType[];
   totalCount: number;
+  totalPage: number;
   currentPage: number;
 };
 
 const PER_PAGE = 2;
 
-const BlogPage: React.FC<Props> = ({ blog, totalCount, currentPage }) => {
+const BlogPage: React.FC<Props> = ({
+  blog,
+  totalCount,
+  currentPage,
+  totalPage,
+}) => {
   return (
     <>
       <Blog
         blog={blog}
         totalCount={totalCount}
-        PER_PAGE={PER_PAGE}
         currentPage={currentPage}
+        totalPage={totalPage}
       />
     </>
   );
@@ -51,12 +57,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const currentPage = data.offset / data.limit + 1;
+  const totalCount = data.totalCount;
+  const totalPage = Math.ceil(totalCount / PER_PAGE);
 
   return {
     props: {
       blog: data.contents,
-      totalCount: data.totalCount,
+      totalCount,
       currentPage,
+      totalPage,
     },
   };
 };

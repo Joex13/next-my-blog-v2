@@ -16,7 +16,7 @@ const BlogCard = ({ blog }: Props) => {
             className="flex flex-col h-full p-4 hover:opacity-70 duration-300"
             href={`/blog/post/${blog.id}`}
           >
-            <ImageFill src={blog.eyecatch.url} alt={blog.title} />
+            <ImageFill src={blog.eyecatch.url} alt={blog.title} aspectSquare />
             <span className="text-ellipsis overflow-hidden whitespace-nowrap font-bold mt-2">
               {blog.title}
             </span>

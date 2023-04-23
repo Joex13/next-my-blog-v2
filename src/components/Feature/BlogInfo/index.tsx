@@ -10,7 +10,7 @@ const BlogInfo = ({ blog }: Props) => {
   return (
     <>
       <div className="text-center [&>*]:mt-2">
-        <ImageFill src={blog.eyecatch.url} alt={blog.title} />
+        <ImageFill src={blog.eyecatch.url} alt={blog.title} className='h-96' aspectSquare={false} />
         <Heading level={1} className="font-bold text-2xl">
           {blog.title}
         </Heading>

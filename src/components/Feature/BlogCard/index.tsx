@@ -17,10 +17,10 @@ const BlogCard = ({ blog }: Props) => {
             href={`/blog/post/${blog.id}`}
           >
             <ImageFill src={blog.eyecatch.url} alt={blog.title} aspectSquare />
-            <span className="text-ellipsis overflow-hidden whitespace-nowrap font-bold mt-2">
+            <span className="text-sm sm:text-base text-ellipsis overflow-hidden whitespace-nowrap font-bold mt-2">
               {blog.title}
             </span>
-            <span>公開日:{blog.publishedAt.slice(0, 10)}</span>
+            <span className='text-sm sm:text-base'>公開日:{blog.publishedAt.slice(0, 10)}</span>
           </Link>
         </article>
       </Card>

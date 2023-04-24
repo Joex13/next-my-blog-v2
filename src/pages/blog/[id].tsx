@@ -11,7 +11,7 @@ type Props = {
   currentPage: number;
 };
 
-const PER_PAGE = 2;
+const PER_PAGE = 4;
 
 const BlogPage: React.FC<Props> = ({
   blog,
